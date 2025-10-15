@@ -1,27 +1,63 @@
 package model;
 
 import java.util.List;
+import cart.Cart;
 
 public class Order {
-    private int id;
+    private int orderId;
     private User user;
-    private List<CartItem> items;
-    private double total;
+    private List<CartItem> orderItems;
+    private double totalAmount;
 
-    public Order(int id, User user, List<CartItem> items, double total) {
-        this.id = id;
+    public Order(int orderId, User user, List<CartItem> orderItems, double totalAmount) {
+        this.orderId = orderId;
         this.user = user;
-        this.items = items;
-        this.total = total;
+        this.orderItems = orderItems;
+        this.totalAmount = totalAmount;
     }
 
-    public int getId() { return id; }
-    public User getUser() { return user; }
-    public List<CartItem> getItems() { return items; }
-    public double getTotal() { return total; }
+    // Getters and Setters
+    public int getOrderId() {
+        return orderId;
+    }
 
-    @Override
-    public String toString() {
-        return "Order #" + id + " | User: " + user.getUsername() + " | Total: $" + total;
+    public User getUser() {
+        return user;
+    }
+
+    public List<CartItem> getOrderItems() {
+        return orderItems;
+    }
+
+    public double getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setOrderItems(List<CartItem> orderItems) {
+        this.orderItems = orderItems;
+    }
+
+    public void setTotalAmount(double totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+
+    // Display order summary
+    public void displayOrderDetails() {
+        System.out.println("Order ID: " + orderId);
+        System.out.println("Customer: " + user.getUsername());
+        System.out.println("Items:");
+        for (CartItem item : orderItems) {
+            System.out.println("  - " + item.getProduct().getName() + " x " + item.getQuantity());
+        }
+        System.out.println("Total Amount: ₹" + totalAmount);
+        System.out.println("------------------------------------");
     }
 }
